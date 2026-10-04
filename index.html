@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepTalk — Practice Your Pitch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            margin-top: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        button:hover {
+            background: #ff6b81;
+        }
+
+        .question-card {
+            background: #0f3460;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .question-card:hover {
+            background: #1a4a8a;
+        }
+
+        .question-card.selected {
+            background: #e94560;
+        }
+
+        #feedback {
+            display: none;
+        }
+
+        .score {
+            display: flex;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        .score-box {
+            background: #0f3460;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .score-box span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            color: #aaa;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎤 PrepTalk</h1>
+        <p class="subtitle">Practice your presentation. Survive the audience.</p>
+
+        <!-- Step 1: Topic -->
+        <div class="card">
+            <h3>1. What's your presentation about?</h3>
+            <input type="text" id="topic" placeholder="e.g. My StormHacks project: PrepTalk">
+            <select id="audience">
+                <option>Classmates</option>
+                <option>Professors</option>
+                <option>Judges / Investors</option>
+            </select>
+            <button id="generateButton" onclick="generateQuestions()">
+                Generate Questions
+            </button>
+        </div>
+
+        <!-- Step 2: Questions -->
+        <div class="card" id="questionsCard" style="display:none;">
+            <h3>2. Pick a question to practice:</h3>
+            <div id="questions"></div>
+        </div>
+
+        <!-- Step 3: Answer -->
+        <div class="card" id="answerCard" style="display:none;">
+            <h3>3. Your answer:</h3>
+            <p id="chosenQuestion" style="color:#e94560; margin-bottom:8px;"></p>
+            <textarea id="answer" rows="4" placeholder="Type your answer here..."></textarea>
+            <button id="feedbackButton" onclick="getFeedback()">
+                Get Feedback
+            </button>
+        </div>
+
+        <!-- Step 4: Feedback -->
+        <div class="card" id="feedback">
+            <h3>📊 Coach's Feedback</h3>
+            <div class="score">
+                <div class="score-box">Clarity<br><span id="clarity">-</span></div>
+                <div class="score-box">Relevance<br><span id="relevance">-</span></div>
+            </div>
+            <p><strong>💪 Strength:</strong> <span id="strengths"></span></p>
+            <p><strong>🔧 Improve:</strong> <span id="improvement"></span></p>
+            <p><strong>✨ Better answer:</strong> <span id="betterAnswer"></span></p>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>
